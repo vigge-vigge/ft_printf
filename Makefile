@@ -6,31 +6,50 @@
 #    By: vakande <vakande@student.42barcelona.      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 12:50:51 by vakande           #+#    #+#              #
-#    Updated: 2025/04/05 11:27:28 by vakande          ###   ########.fr        #
+#    Updated: 2025/04/08 14:56:02 by vakande          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft
 
-NAME = libprintf.a
+SRC_DIR = src
+OBJ_DIR = obj
+LIBFT_DIR = libft
 
-SRCS = ft_printf.c \
+NAME = libftprintf.a
 
-OBJS = $(SRCS:.c=.o)
+SRCS = $(addprefix $(SRC_DIR)/, ft_printf.c ft_printf_utils.c ft_print_hex.c ft_print_ptr.c \
+		ft_print_unsigned.c)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+LIBFT = $(LIBFT_DIR)/libft.a
+
+__dep_libft:
+	make -C $(LIBFT_DIR)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-				ar rcs $(NAME) $(OBJS)
+			make -C $(LIBFT_DIR)
+			ar rcs $(NAME) $(OBJS) $(LIBFT)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+					mkdir -p $(OBJ_DIR)
+					$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 				$(RM) $(OBJS)
+				make -C $(LIBFT_DIR) clean
 
 fclean: clean
-				$(RM) $(NAME) *.out
+				$(RM) $(NAME) printf_test
+				make -C $(LIBFT_DIR) fclean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re
+test: $(NAME)
+		$(CC) $(CFLAGS) main.c $(NAME) $(LIBFT) -o printf_test
+
+.PHONY:			all clean fclean re test
