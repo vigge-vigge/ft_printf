@@ -6,7 +6,7 @@
 /*   By: vakande <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 09:51:06 by vakande           #+#    #+#             */
-/*   Updated: 2025/04/08 14:59:32 by vakande          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:10:27 by vakande          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 int		ft_printf(const char *str, ...);
 int		ft_formats(va_list args, const char letter);
@@ -33,5 +34,7 @@ int		ft_hex_len(unsigned int num);
 void	ft_put_hex(unsigned int num, const char format);
 int		ft_print_hex(unsigned int num, const char format);
 int		ft_printpercent(void);
+char	*ft_itoa(int n);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

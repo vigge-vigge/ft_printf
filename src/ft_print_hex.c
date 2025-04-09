@@ -6,12 +6,11 @@
 /*   By: vakande <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:25:06 by vakande           #+#    #+#             */
-/*   Updated: 2025/04/08 15:00:11 by vakande          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:05:29 by vakande          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 #include <stdlib.h>
 
 int	ft_hex_len(unsigned int num)

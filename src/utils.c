@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vakande <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 15:13:55 by vakande           #+#    #+#             */
-/*   Updated: 2025/02/10 14:30:41 by vakande          ###   ########.fr       */
+/*   Created: 2025/04/09 18:55:05 by vakande           #+#    #+#             */
+/*   Updated: 2025/04/09 19:11:03 by vakande          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
+#include "ft_printf.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
 static int	nbr_len(int nbr)
 {

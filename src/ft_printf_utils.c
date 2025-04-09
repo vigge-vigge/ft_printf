@@ -6,12 +6,11 @@
 /*   By: vakande <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 16:57:36 by vakande           #+#    #+#             */
-/*   Updated: 2025/04/08 13:10:16 by vakande          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:05:20 by vakande          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 #include <stdlib.h>
 
 int	ft_putchar(char c)

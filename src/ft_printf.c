@@ -6,12 +6,11 @@
 /*   By: vakande <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 10:09:14 by vakande           #+#    #+#             */
-/*   Updated: 2025/04/08 14:58:16 by vakande          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:05:58 by vakande          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -32,8 +31,14 @@ int	ft_formats(va_list args, const char letter)
 		length += ft_print_unsigned(va_arg(args, unsigned int));
 	else if (letter == 'x')
 		length += ft_print_hex(va_arg(args, unsigned int), letter);
+	else if (letter == 'X')
+		length += ft_print_hex(va_arg(args, unsigned int), letter);
 	else if (letter == '%')
 		length += ft_printpercent();
+	else
+		return (-1);
+	if (length < 0)
+		return (-1);
 	return (length);
 }
 
@@ -41,24 +46,24 @@ int	ft_printf(const char *str, ...)
 {
 	int		i;
 	va_list	args;
-	int		print_len;
+	int		len;
 
-	i = 0;
-	print_len = 0;
+	if (!str)
+		return (-1);
 	va_start(args, str);
-	while (str[i])
+	i = -1;
+	len = 0;
+	while (str[++i])
 	{
-		if (str[i] == '%')
-		{
-			print_len += ft_formats(args, str[i + 1]);
-			i += 2;
-		}
+		if (str[i] == '%' && str[i + 1])
+			len += ft_formats(args, str[++i]);
 		else
-		{
-			print_len += ft_putchar(str[i]);
-			i++;
-		}
+			len += ft_putchar(str[i]);
+		if (len == -1)
+			break ;
 	}
 	va_end(args);
-	return (print_len);
+	if (len == -1)
+		return (-1);
+	return (len);
 }
